@@ -1,10 +1,10 @@
-package generator
+package fscoward.generator
 
 /**
  * Created by endlick1989 on 2014/05/04.
  */
 
-import env.Environment
+import fscoward.env.Environment
 
 case class Code(codeId: String, codeName: String, description: String, codeValue: String, name: String,
                 javaClass: String, javaMehotdName: String)

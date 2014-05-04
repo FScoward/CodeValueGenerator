@@ -1,11 +1,12 @@
+package fscoward
+
 /**
  * Created by endlick1989 on 2014/05/02.
  */
 
-import excel.ExcelOperator
-import generator.CodeGenerator
+import fscoward.excel.ExcelOperator
+import fscoward.generator.CodeGenerator
 import java.io.PrintWriter
-import collection.JavaConversions._
 
 object Main {
   def main(args: Array[String]): Unit = {
