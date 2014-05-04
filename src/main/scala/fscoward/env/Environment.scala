@@ -6,4 +6,5 @@ package fscoward.env
 trait Environment {
   val author = "CodeValueGenerator"
   val since = "0.1"
+  val company = "FScoward"
 }

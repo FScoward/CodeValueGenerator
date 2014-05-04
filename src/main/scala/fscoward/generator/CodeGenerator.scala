@@ -21,7 +21,7 @@ object CodeGenerator extends Environment {
     val config = ConfigFactory.load()
 
     s"/*\n" +
-    s" * Copyright(C) 2014 TIS Inc.\n" +
+    s" * Copyright(C) 2014 ${company} Inc.\n" +
     s" */\n" +
     s"package ${config.getString("java.package")};\n\n" +
     s"/**\n" +

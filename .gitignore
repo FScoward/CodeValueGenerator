@@ -15,5 +15,3 @@ dist
 /.settings
 *.db
 twitter4j.properties
-*.xls
-*.java
