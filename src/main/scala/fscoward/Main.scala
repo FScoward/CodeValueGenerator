@@ -1,7 +1,7 @@
 package fscoward
 
 /**
- * Created by endlick1989 on 2014/05/02.
+ * Created by FScoward on 2014/05/02.
  */
 
 import fscoward.excel.ExcelOperator

@@ -1,7 +1,7 @@
 package fscoward.excel
 
 /**
- * Created by endlick1989 on 2014/05/04.
+ * Created by FScoward on 2014/05/04.
  */
 import org.apache.poi.ss.usermodel._
 import fscoward.generator.Code
