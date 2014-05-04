@@ -6,36 +6,42 @@ package fscoward.excel
 import org.apache.poi.ss.usermodel._
 import fscoward.generator.Code
 import collection.JavaConversions._
-import java.io.FileInputStream
 import scala.collection.mutable
+import com.typesafe.config.ConfigFactory
 
 object ExcelOperator {
   private var _codeList: List[Code] = Nil
 
-  def readExcel(filename: String): Workbook = {
-    WorkbookFactory.create(new FileInputStream(filename))
-  }
-
-  def readSheet(workBook: Workbook, sheetName: String): Sheet = {
-    workBook.getSheet(sheetName)
-  }
-
+  case class Address(exclude: Int, codeId: Int, codeName: Int, description: Int, codeValue: Int, name: Int, javaClass: Int, javaMethodName: Int)
   def getCodeList(sheet: Sheet): this.type = {
-    val rit: Iterator[Row] = sheet.rowIterator()
-    val list = rit.drop(11).map {row =>
-      val codeId = row.getCell(0).toString
-      val codeName = row.getCell(2).toString
-      val description = row.getCell(6).toString
-      val codeValue = row.getCell(12).toString
-      val name = row.getCell(14).toString
+    val config = ConfigFactory.load()
+
+    val address = Address(
+      config.getInt("codeAddress.exclude"),
+      config.getInt("codeAddress.codeId"),
+      config.getInt("codeAddress.codeName"),
+      config.getInt("codeAddress.description"),
+      config.getInt("codeAddress.codeValue"),
+      config.getInt("codeAddress.name"),
+      config.getInt("codeAddress.javaClass"),
+      config.getInt("codeAddress.javaMethodName")
+    )
+
+    val list = sheet.rowIterator().drop(address.exclude).map {row =>
+      val codeId = row.getCell(address.codeId).toString
+      val codeName = row.getCell(address.codeName).toString
+      val description = row.getCell(address.description).toString
+      val codeValue = row.getCell(address.codeValue).toString
+      val name = row.getCell(address.name).toString
       val javaClass = {
-        if(row.getCell(78) != null) {
-          row.getCell(78).toString
+        val tmp = row.getCell(address.javaClass)
+        if(tmp != null) {
+          tmp.toString
         }else{
           ""
         }
       }
-      val javaMethodName = row.getCell(79).toString
+      val javaMethodName = row.getCell(address.javaMethodName).toString
       Code(codeId, codeName, description, codeValue, name, javaClass, javaMethodName)
     }.toList
 

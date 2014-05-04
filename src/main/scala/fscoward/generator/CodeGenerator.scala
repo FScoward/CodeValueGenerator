@@ -13,7 +13,7 @@ object CodeGenerator extends Environment {
 
   def generate(mainClassName: String, classCodeList: Map[String, List[Code]]): String = {
     headerGenerator +
-    mainClassGenerator(mainClassName, classCodeList)
+      mainClassGenerator(mainClassName, classCodeList)
   }
 
   private def headerGenerator: String = {
