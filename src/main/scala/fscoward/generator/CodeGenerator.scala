@@ -5,6 +5,7 @@ package fscoward.generator
  */
 
 import fscoward.env.Environment
+import com.typesafe.config.ConfigFactory
 
 case class Code(codeId: String, codeName: String, description: String, codeValue: String, name: String,
                 javaClass: String, javaMehotdName: String)
@@ -17,15 +18,18 @@ object CodeGenerator extends Environment {
   }
 
   private def headerGenerator: String = {
-    s"/* \n" +
-    s"* Copyright(C) 2014 TIS Inc. \n" +
-    s"*/ \n" +
-    s"package org.sample;\n\n" +
-    s"/** \n" +
-    s" * XXXXXXXX \n" +
-    s" * @author ${author} \n" +
-    s" * @since ${since} \n" +
-    s" */ \n"
+    val config = ConfigFactory.load()
+
+    s"/*\n" +
+    s" * Copyright(C) 2014 TIS Inc.\n" +
+    s" */\n" +
+    s"package ${config.getString("java.package")};\n\n" +
+    s"/**\n" +
+    s" * ${config.getString("java.description")}\n" +
+    s" *\n" +
+    s" * @author ${author}\n" +
+    s" * @since ${since}\n" +
+    s" */\n"
   }
 
   private def codePatternGenerator(number: String): String = {

@@ -11,13 +11,13 @@ import com.typesafe.config.ConfigFactory
 
 object Main {
   def main(args: Array[String]): Unit = {
-    val (filename, sheetname) = init
+    val (filename, sheetname, mainClass) = init
 
     val sheet = ExcelReader.readExcel(filename).readSheet(sheetname)
     val list = ExcelOperator.getCodeList(sheet).groupByJavaClass
 
-    val out = new PrintWriter("out.java")
-    out.println(CodeGenerator.generate("Main", list))
+    val out = new PrintWriter(mainClass + ".java")
+    out.println(CodeGenerator.generate(mainClass, list))
     out.close
   }
 
@@ -25,6 +25,7 @@ object Main {
     val config = ConfigFactory.load()
     val filename = config.getString("excel.filename")
     val sheetname = config.getString("excel.sheetname")
-    (filename, sheetname)
+    val mainClass = config.getString("java.mainClass")
+    (filename, sheetname, mainClass)
   }
 }
