@@ -1,3 +1,5 @@
+import AssemblyKeys._
+
 name := "CodeValueGenerator"
 
 version := "1.0"
@@ -9,3 +11,5 @@ libraryDependencies ++= Seq(
   "org.apache.poi" % "poi-ooxml" % "3.10-FINAL",
   "com.typesafe" % "config" % "1.2.1"
 )
+
+assemblySettings
