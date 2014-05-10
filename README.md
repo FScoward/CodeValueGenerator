@@ -3,7 +3,7 @@ Excel to Java code
 
 ## How to use
 
-`
+```
 root/  
 ┣ build.sbt  
 ┣ project/  
@@ -15,7 +15,7 @@ root/
 ┣ target  
 ┣ sample.xls <- prepare excel file  
 ┗ xxx.java <- generate by this program  
-`
+```
 
 1. Prepare excel file.
 1. Edit config file(application.conf)
