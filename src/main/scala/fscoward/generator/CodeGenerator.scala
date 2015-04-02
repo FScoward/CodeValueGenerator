@@ -34,7 +34,7 @@ object CodeGenerator extends Environment {
 
   private def codePatternGenerator(number: String): String = {
     s"    /** コードパターン${number} */\n" +
-    s"""    public static final String CODE_PATTERN_${number} = "PATTERN0${number}";\n"""
+    f"""    public static final String CODE_PATTERN_${number} = "PATTERN${number.toInt}%02d";\n"""
   }
 
   private def mainClassGenerator(mainClassName: String, classCodeList: Map[String, List[Code]]): String = {
